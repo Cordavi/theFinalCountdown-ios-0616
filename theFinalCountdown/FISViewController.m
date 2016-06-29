@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIButton *pauseButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-@property (weak, nonatomic) IBOutlet UIButton *resumeButton;
+
 
 @end
 
@@ -47,6 +47,7 @@
     self.timeLabel.hidden = YES;
     self.startButton.hidden = NO;
     self.cancelButton.hidden = YES;
+    [self.activeTimer invalidate];
 }
 
 - (void)updateTimeLabelText {
@@ -54,7 +55,6 @@
     NSDateComponentsFormatter *countDownText = [[NSDateComponentsFormatter alloc] init];
     self.timeLabel.text = [countDownText stringFromTimeInterval:timeSinceStartOfTimer];
     if (self.timerEndDate.timeIntervalSinceNow <= 0) {
-        [self.activeTimer invalidate];
         [self resetTimer];
     }
 }
@@ -75,8 +75,6 @@
     //hides date picker and shows countdown label
     self.datePicker.hidden = YES;
     self.timeLabel.hidden = NO;
-    self.startButton.hidden = YES;
-    self.cancelButton.hidden = NO;
     self.pauseButton.enabled = YES;
 }
 
@@ -84,25 +82,19 @@
     [self resetTimer];
 }
 
-
-
 - (IBAction)pauseButtonTapped:(id)sender {
-    [self.activeTimer invalidate];
-    self.pauseDate = [NSDate date];
-    self.pauseButton.hidden = YES;
-    self.pauseButton.enabled = NO;
-    self.resumeButton.hidden = NO;
-    //self.pauseButton.titleLabel.text = @"Resume";
+    if ([self.pauseButton.titleLabel.text isEqualToString:@"Pause"]) {
+        self.pauseDate = [NSDate date];
+        [self.activeTimer invalidate];
+        [self.pauseButton setTitle:@"Resume" forState:UIControlStateNormal];
+    } else if ([self.pauseButton.titleLabel.text isEqualToString:@"Resume"]){
+        NSTimeInterval timeRemaining = [self.startDate timeIntervalSinceDate:self.pauseDate];
+        timeRemaining = self.datePicker.countDownDuration + timeRemaining;
+        NSDate *resumeDate = [NSDate dateWithTimeIntervalSinceNow:timeRemaining];
+        [self startTimer:resumeDate];
+        [self.pauseButton setTitle:@"Pause" forState:UIControlStateNormal];
+    }
 }
 
-- (IBAction)resumeButtonTapped:(id)sender {
-    NSTimeInterval timeRemaining = [self.startDate timeIntervalSinceDate:self.pauseDate];
-    timeRemaining = self.datePicker.countDownDuration + timeRemaining;
-    NSDate *resumeDate = [NSDate dateWithTimeIntervalSinceNow:timeRemaining];
-    [self startTimer:resumeDate];
-    self.pauseButton.hidden = NO;
-    self.resumeButton.hidden = YES;
-    self.resumeButton.enabled = NO;
-}
 
 @end
