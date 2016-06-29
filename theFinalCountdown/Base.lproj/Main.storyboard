@@ -70,13 +70,22 @@
                                             <action selector="cancelButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="26A-LT-A7h"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3m-oR-aHO">
+                                        <rect key="frame" x="185" y="127" width="55" height="30"/>
+                                        <state key="normal" title="Resume"/>
+                                        <connections>
+                                            <action selector="resumeButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ItX-mC-IDY"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="e5g-VY-d7z" firstAttribute="centerX" secondItem="byN-Vo-xYo" secondAttribute="centerX" constant="-50" id="4p4-Hv-vK9"/>
+                                    <constraint firstItem="q3m-oR-aHO" firstAttribute="centerY" secondItem="byN-Vo-xYo" secondAttribute="centerY" id="99l-CV-hlM"/>
                                     <constraint firstItem="G61-zh-9P3" firstAttribute="centerY" secondItem="byN-Vo-xYo" secondAttribute="centerY" id="BA6-sl-2jN"/>
                                     <constraint firstItem="G61-zh-9P3" firstAttribute="centerX" secondItem="byN-Vo-xYo" secondAttribute="centerX" constant="50" id="K4j-Jb-UAM"/>
                                     <constraint firstItem="leV-pI-RIW" firstAttribute="centerY" secondItem="byN-Vo-xYo" secondAttribute="centerY" id="M4b-KC-ic8"/>
+                                    <constraint firstItem="q3m-oR-aHO" firstAttribute="centerX" secondItem="byN-Vo-xYo" secondAttribute="centerX" constant="50" id="Q6C-Tt-aJB"/>
                                     <constraint firstItem="leV-pI-RIW" firstAttribute="centerX" secondItem="byN-Vo-xYo" secondAttribute="centerX" constant="-50" id="WMy-mL-C3G"/>
                                     <constraint firstItem="e5g-VY-d7z" firstAttribute="centerY" secondItem="byN-Vo-xYo" secondAttribute="centerY" id="qSX-r3-A7q"/>
                                 </constraints>
@@ -99,6 +108,7 @@
                         <outlet property="cancelButton" destination="leV-pI-RIW" id="4I0-En-N0S"/>
                         <outlet property="datePicker" destination="t0q-ZD-j8N" id="FdW-NS-kre"/>
                         <outlet property="pauseButton" destination="G61-zh-9P3" id="tBK-MQ-R2H"/>
+                        <outlet property="resumeButton" destination="q3m-oR-aHO" id="X7J-UJ-rfN"/>
                         <outlet property="startButton" destination="e5g-VY-d7z" id="o9e-Zg-gSs"/>
                         <outlet property="timeLabel" destination="ACg-uO-YjG" id="n9H-hS-CuN"/>
                     </connections>
